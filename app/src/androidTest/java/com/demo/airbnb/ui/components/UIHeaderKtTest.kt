@@ -1,6 +1,7 @@
 package com.demo.airbnb.ui.components
 
 import androidx.activity.ComponentActivity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
@@ -18,7 +19,7 @@ class UIHeaderKtTest {
     fun checkLabelContent() {
         composeTestRule.setContent {
             AirbnbTheme {
-                UIHeader(R.string.homescreen_title)
+                UIHeader(stringResource(R.string.homescreen_title))
             }
         }
 

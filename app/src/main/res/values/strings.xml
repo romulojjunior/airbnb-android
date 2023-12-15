@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name">Airbnb</string>
+    <!--  Screen Title  -->
     <string name="homescreen_title">Home</string>
+    <string name="loginscreen_title">Login or sign up to Airbnb</string>
+
+    <!--  Login Screen  -->
+    <string name="login_country_or_region">Country/Region</string>
+    <string name="login_phone_number">Phone number</string>
+    <string name="login_sms_confirmation">We\'ll call or text you to confirm your number. Standard message and data apply.</string>
+    <string name="login_continue_with_email">Continue with Email</string>
+    <string name="login_continue_with_google">Continue with Google</string>
+
+    <!--  Global  -->
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="or">or</string>
+
+    <!--  Samples for Preview and Test  -->
+    <string name="ui_sample">UI sample text</string>
 </resources>
