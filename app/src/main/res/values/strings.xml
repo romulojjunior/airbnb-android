@@ -18,4 +18,11 @@
 
     <!--  Samples for Preview and Test  -->
     <string name="ui_sample">UI sample text</string>
+
+    <!-- Navigation   -->
+    <string name="nav_explore">Explore</string>
+    <string name="nav_favorites">Favorites</string>
+    <string name="nav_trips">Trips</string>
+    <string name="nav_messages">Messages</string>
+    <string name="nav_profile">Profile</string>
 </resources>

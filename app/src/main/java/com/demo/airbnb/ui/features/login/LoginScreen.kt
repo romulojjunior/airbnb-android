@@ -170,7 +170,6 @@ fun LoginScreenPreview() {
 
 @Composable
 @Preview(
-    showBackground = true,
     device = "id:pixel_6a",
     uiMode = Configuration.UI_MODE_NIGHT_YES
 )
