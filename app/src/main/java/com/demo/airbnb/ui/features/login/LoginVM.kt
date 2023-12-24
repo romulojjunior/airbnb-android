@@ -22,7 +22,7 @@ class LoginVM @Inject constructor(private val signInUC: SignInUC) : ViewModel() 
     val uiState = _uiState
 
     fun signIn(email: String, password: String) {
-        _uiState.value = _uiState.value.copy(isLoading = true)
+        _uiState.value = _uiState.value.copy(isLoading = true, exception = null)
         try {
             viewModelScope.launch(Dispatchers.IO) {
                 val session = signInUC.execute(email, password)

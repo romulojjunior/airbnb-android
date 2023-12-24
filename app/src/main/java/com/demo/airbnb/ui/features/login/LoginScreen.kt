@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
@@ -34,15 +33,13 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.demo.airbnb.R
-import com.demo.airbnb.ui.AppRouter
 import com.demo.airbnb.ui.components.UIOutlinedButton
 import com.demo.airbnb.ui.theme.AirbnbTheme
-import kotlin.reflect.KFunction2
 
 @Composable
 fun LoginScreen(
     uiState: MutableState<LoginVM.UIState> = mutableStateOf(LoginVM.UIState()),
-    navigateTo: (route: String) -> Unit = {},
+    navigateToHome: () -> Unit = {},
     signIn: (email: String, password: String) -> Unit = { _, _ -> },
 ) {
     var country by rememberSaveable {
@@ -67,7 +64,7 @@ fun LoginScreen(
 
     LaunchedEffect(key1 = uiState.value.session, block = {
         if (uiState.value.session != null) {
-            navigateTo(AppRouter.homePath())
+            navigateToHome()
         }
     })
 
