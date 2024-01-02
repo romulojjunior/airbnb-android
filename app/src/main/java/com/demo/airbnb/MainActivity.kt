@@ -42,7 +42,9 @@ class MainActivity : ComponentActivity() {
                 composable(AppRouter.homePath()) {
                     val homeVM: HomeVM by viewModels()
                     AirbnbTheme {
-                        HomeScreen()
+                        HomeScreen(
+                            uiState = homeVM.uiState
+                        )
                     }
                 }
             }

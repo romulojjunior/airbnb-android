@@ -27,6 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.demo.airbnb.R
+import com.demo.airbnb.domain.entities.PlaceCategory
 import com.demo.airbnb.ui.components.UIHeader
 import com.demo.airbnb.ui.components.UITabItem
 import com.demo.airbnb.ui.theme.AirbnbTheme
@@ -34,13 +35,15 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ExploreScreen() {
+fun ExploreScreen(
+    placeCategories: List<PlaceCategory> = emptyList()
+) {
     Surface(
         color = MaterialTheme.colorScheme.background,
         modifier = Modifier
             .fillMaxSize()
     ) {
-        val pagerState = rememberPagerState(pageCount = { 2 })
+        val pagerState = rememberPagerState(pageCount = { placeCategories.size })
         val scope = rememberCoroutineScope()
 
         LazyColumn {
@@ -63,53 +66,27 @@ fun ExploreScreen() {
                     modifier = Modifier.padding(top = 16.dp),
                     contentColor = MaterialTheme.colorScheme.secondary,
                 ) {
-                    UITabItem(
-                        label = "Home",
-                        imageVector = Icons.Filled.Home,
-                        contentDescription = "",
-                        selected = pagerState.currentPage == 0,
-                        onClick = {
-                            scope.launch {
-                                pagerState.scrollToPage(0, 0f)
-                            }
+                    placeCategories.forEach {
+                        val index = it.priority
+                        val icon = when (it.id) {
+                            1 -> Icons.Filled.Home
+                            2 -> Icons.Filled.Call
+                            3 -> Icons.Filled.Face
+                            else -> Icons.Filled.Info
                         }
-                    )
 
-                    UITabItem(
-                        label = "Call",
-                        imageVector = Icons.Filled.Call,
-                        contentDescription = "",
-                        selected = pagerState.currentPage == 1,
-                        onClick = {
-                            scope.launch {
-                                pagerState.scrollToPage(1, 0f)
+                        UITabItem(
+                            label = it.name,
+                            imageVector = icon,
+                            contentDescription = "",
+                            selected = pagerState.currentPage == index,
+                            onClick = {
+                                scope.launch {
+                                    pagerState.scrollToPage(index, 0f)
+                                }
                             }
-                        }
-                    )
-
-                    UITabItem(
-                        label = "Call",
-                        imageVector = Icons.Filled.Face,
-                        contentDescription = "",
-                        selected = pagerState.currentPage == 2,
-                        onClick = {
-                            scope.launch {
-                                pagerState.scrollToPage(2, 0f)
-                            }
-                        }
-                    )
-
-                    UITabItem(
-                        label = "Info",
-                        imageVector = Icons.Filled.Info,
-                        contentDescription = "",
-                        selected = pagerState.currentPage == 3,
-                        onClick = {
-                            scope.launch {
-                                pagerState.scrollToPage(3, 0f)
-                            }
-                        }
-                    )
+                        )
+                    }
                 }
 
                 HorizontalPager(state = pagerState) { index ->
