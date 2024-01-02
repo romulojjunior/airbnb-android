@@ -2,12 +2,18 @@ package com.demo.airbnb.ui.features.home
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.demo.airbnb.domain.entities.PlaceCategory
+import com.demo.airbnb.domain.usecases.places.GetPlacesCategoriesUC
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeVM @Inject constructor() : ViewModel() {
+class HomeVM @Inject constructor(
+    private val getPlacesCategoriesUC: GetPlacesCategoriesUC
+) : ViewModel() {
     data class UIState(
         val exception: Exception? = null,
         val isLoading: Boolean = false,
@@ -18,14 +24,18 @@ class HomeVM @Inject constructor() : ViewModel() {
     val uiState = _uiState
 
     init {
-        _uiState.value = _uiState.value.copy(
-            isLoading = false,
-            placeCategories = listOf(
-                PlaceCategory(id = 1, priority = 0, name = "Home"),
-                PlaceCategory(id = 2, priority = 1, name = "Call"),
-                PlaceCategory(id = 3, priority = 2, name = "Face"),
-                PlaceCategory(id = 4, priority = 3, name = "Info"),
+        getPlaceCategories()
+    }
+
+    private fun getPlaceCategories() {
+        _uiState.value = _uiState.value.copy(isLoading = true, exception = null)
+
+        viewModelScope.launch(Dispatchers.IO) {
+            val placeCategories = getPlacesCategoriesUC.execute()
+            _uiState.value = _uiState.value.copy(
+                isLoading = false,
+                placeCategories = placeCategories
             )
-        )
+        }
     }
 }
