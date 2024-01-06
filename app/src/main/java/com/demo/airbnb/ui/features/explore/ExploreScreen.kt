@@ -21,7 +21,10 @@ import androidx.compose.material3.TabRow
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.demo.airbnb.R
@@ -68,10 +71,10 @@ fun ExploreScreen(
                     placeCategories.forEach {
                         val index = it.priority
                         val icon = when (it.id) {
-                            1 -> Icons.Filled.Home
-                            2 -> Icons.Filled.Call
-                            3 -> Icons.Filled.Face
-                            else -> Icons.Filled.Info
+                            1 -> ImageVector.vectorResource(id = R.drawable.ic_house)
+                            2 -> ImageVector.vectorResource(id = R.drawable.ic_apartment)
+                            3 -> ImageVector.vectorResource(id = R.drawable.ic_bed)
+                            else -> ImageVector.vectorResource(id = R.drawable.ic_hotel_star)
                         }
 
                         UITabItem(
@@ -89,14 +92,14 @@ fun ExploreScreen(
                 }
 
                 HorizontalPager(state = pagerState) { index ->
-                    val titleId = when (index) {
-                        0 -> R.string.explorescreen_title
-                        1 -> R.string.nav_messages
-                        else -> R.string.explorescreen_title
+                    val title = try {
+                        placeCategories[index].name
+                    } catch (e: Exception) {
+                        "Home"
                     }
 
                     Column {
-                        UIHeader(stringResource(titleId))
+                        UIHeader(title)
                         placeCategories[index].places.forEach { place  ->
                             PlaceCard(place = place)
                         }
