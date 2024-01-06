@@ -3,10 +3,8 @@ package com.demo.airbnb.ui.features.explore
 import android.content.res.Configuration
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.pager.HorizontalPager
@@ -16,25 +14,19 @@ import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.TabRow
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
-import com.demo.airbnb.AppConfig
 import com.demo.airbnb.R
 import com.demo.airbnb.domain.entities.PlaceCategory
+import com.demo.airbnb.ui.components.PlaceCard
 import com.demo.airbnb.ui.components.UIHeader
 import com.demo.airbnb.ui.components.UITabItem
 import com.demo.airbnb.ui.theme.AirbnbTheme
@@ -105,27 +97,8 @@ fun ExploreScreen(
 
                     Column {
                         UIHeader(stringResource(titleId))
-
-                        // TODO: Create a PlaceCard component to display place details.
                         placeCategories[index].places.forEach { place  ->
-                            Column {
-                                Card(
-                                    modifier = Modifier
-                                        .padding(vertical = 8.dp, horizontal = 16.dp)
-                                        .fillMaxWidth()
-                                ) {
-                                    AsyncImage(
-                                        model = place.coverUrl,
-                                        contentDescription = "Place image",
-                                        contentScale = ContentScale.Crop,
-                                        modifier = Modifier.fillMaxWidth()
-                                    )
-                                }
-
-                                Row(modifier=Modifier.fillMaxWidth().padding(16.dp).height(50.dp)) {
-                                    Text(place.description, overflow = TextOverflow.Ellipsis)
-                                }
-                            }
+                            PlaceCard(place = place)
                         }
                     }
                 }
