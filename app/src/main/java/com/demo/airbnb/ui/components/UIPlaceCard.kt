@@ -2,9 +2,11 @@ package com.demo.airbnb.ui.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -15,9 +17,13 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -25,6 +31,7 @@ import coil.compose.AsyncImage
 import com.demo.airbnb.AppConfig
 import com.demo.airbnb.R
 import com.demo.airbnb.domain.entities.Place
+import com.demo.airbnb.domain.utils.NumberFormatUtils
 import com.demo.airbnb.ui.theme.AirbnbTheme
 
 @Composable
@@ -34,16 +41,20 @@ fun PlaceCard(place: Place) {
             modifier = Modifier
                 .padding(vertical = 8.dp, horizontal = 16.dp)
                 .fillMaxWidth()
-                .aspectRatio(0.90f)
+                .aspectRatio(1f)
         ) {
-            AsyncImage(
-                model = place.coverUrl,
-                contentDescription = "Place image",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxWidth(),
-                placeholder = painterResource(id = R.drawable.connection_error),
-                error = painterResource(id = R.drawable.connection_error)
-            )
+            Box(modifier = Modifier.fillMaxSize()) {
+                AsyncImage(
+                    model = place.coverUrl,
+                    contentDescription = "Place image",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.fillMaxWidth().align(Alignment.Center),
+                    placeholder = painterResource(id = R.drawable.connection_error),
+                    error = painterResource(id = R.drawable.connection_error)
+                )
+                val locale = LocalContext.current.resources.configuration.locales[0]
+                Text(text = NumberFormatUtils.formatCurrency(locale, place.price), color = Color.White, fontWeight = FontWeight.ExtraBold, modifier = Modifier.padding(8.dp).align(Alignment.BottomEnd))
+            }
         }
 
         Row(
