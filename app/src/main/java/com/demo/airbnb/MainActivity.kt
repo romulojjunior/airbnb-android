@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
             val navController = rememberNavController()
             NavHost(
                 navController = navController,
-                startDestination = AppRouter.homePath()
+                startDestination = AppRouter.loginPath()
             ) {
                 composable(AppRouter.loginPath()) {
                     val loginVM: LoginVM by viewModels()

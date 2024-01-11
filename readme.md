@@ -7,5 +7,17 @@ This is a demo android app built using Jetpack libraries such as:
 - Tests
 ...
 
+### Home Screen
+
+|Dark|Light|
+|-|-|
+|||
+|<img src="preview/home-dark.jpg" width="300"/>|<img src="preview/home-light.jpg" width="300"/>|
+
 ## Login Screen
-<img src="preview/login.png" />
+
+|Dark|Light|
+|-|-|
+|||
+|<img src="preview/login-dark.jpg" width="300"/>|<img src="preview/login-light.jpg" width="300"/>|
+
