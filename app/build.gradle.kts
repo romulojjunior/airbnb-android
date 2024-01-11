@@ -29,6 +29,12 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "HOST_URL", """"http://remotehost.com"""")
+        }
+
+        debug {
+            isDebuggable = true
+            buildConfigField("String", "HOST_URL", """"http://localhost:8080"""")
         }
     }
     compileOptions {
@@ -40,6 +46,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -63,6 +70,9 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("androidx.navigation:navigation-compose:2.7.6")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+
+    // Image Download
+    implementation("io.coil-kt:coil-compose:2.5.0")
 
     // DI - Hilt
     implementation("com.google.dagger:hilt-android:2.49")
