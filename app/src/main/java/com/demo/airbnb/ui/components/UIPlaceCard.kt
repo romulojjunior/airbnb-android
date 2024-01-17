@@ -1,6 +1,7 @@
 package com.demo.airbnb.ui.components
 
 import android.content.res.Configuration
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,8 +36,8 @@ import com.demo.airbnb.domain.utils.NumberFormatUtils
 import com.demo.airbnb.ui.theme.AirbnbTheme
 
 @Composable
-fun PlaceCard(place: Place) {
-    Column {
+fun PlaceCard(place: Place, onClick: (place: Place) -> Any = {}) {
+    Column(modifier = Modifier.clickable { onClick(place) }) {
         Card(
             modifier = Modifier
                 .padding(vertical = 8.dp, horizontal = 16.dp)

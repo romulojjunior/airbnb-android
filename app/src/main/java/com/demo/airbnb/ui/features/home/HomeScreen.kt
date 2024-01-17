@@ -13,6 +13,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.demo.airbnb.domain.entities.Place
 import com.demo.airbnb.ui.components.UILoading
 import com.demo.airbnb.ui.features.explore.ExploreScreen
 import com.demo.airbnb.ui.features.home.components.HomeNavigationBar
@@ -21,7 +22,8 @@ import com.demo.airbnb.ui.theme.AirbnbTheme
 
 @Composable
 fun HomeScreen(
-    uiState: MutableState<HomeVM.UIState> = mutableStateOf(HomeVM.UIState())
+    uiState: MutableState<HomeVM.UIState> = mutableStateOf(HomeVM.UIState()),
+    navigateToPlaceDetails: (place: Place) -> Any = {}
 ) {
     var tabIndex by rememberSaveable {
         mutableIntStateOf(0)
@@ -43,7 +45,8 @@ fun HomeScreen(
                 0 -> {
                     Surface(modifier = Modifier.padding(paddingValues = scaffoldPadding)) {
                         ExploreScreen(
-                            placeCategories = uiState.value.placeCategories
+                            placeCategories = uiState.value.placeCategories,
+                            navigateToPlaceDetails = navigateToPlaceDetails
                         )
                     }
                 }

@@ -21,6 +21,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.demo.airbnb.R
+import com.demo.airbnb.domain.entities.Place
 import com.demo.airbnb.domain.entities.PlaceCategory
 import com.demo.airbnb.ui.components.PlaceCard
 import com.demo.airbnb.ui.components.UIHeader
@@ -31,7 +32,8 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ExploreScreen(
-    placeCategories: List<PlaceCategory> = emptyList()
+    placeCategories: List<PlaceCategory> = emptyList(),
+    navigateToPlaceDetails: (place: Place) -> Any = {}
 ) {
     Surface(
         color = MaterialTheme.colorScheme.background,
@@ -94,7 +96,7 @@ fun ExploreScreen(
                     Column {
                         UIHeader(title)
                         placeCategories[index].places.forEach { place  ->
-                            PlaceCard(place = place)
+                            PlaceCard(place = place, onClick = { navigateToPlaceDetails(it) })
                         }
                     }
                 }

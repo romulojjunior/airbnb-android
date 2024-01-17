@@ -2,6 +2,12 @@ package com.demo.airbnb.ui
 
 
 object AppRouter {
-    fun loginPath() = "/login"
-    fun homePath() = "/home"
+    const val loginPath = "/login"
+    const val homePath = "/home"
+    const val placeDetailsPath = "/places/{id}"
+
+    fun loginPath() = loginPath
+
+    fun homePath() = homePath
+    fun placeDetailsPath(placeId: Int) = "/places/$placeId"
 }
