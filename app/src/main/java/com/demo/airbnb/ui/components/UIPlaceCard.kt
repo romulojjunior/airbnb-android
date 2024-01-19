@@ -88,18 +88,19 @@ fun PlaceCard(place: Place, onClick: (place: Place) -> Any = {}) {
 )
 fun PlaceCardLightPreview() {
     val place = Place(
-            id = 1,
-            description = "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more",
-            address = "San Petter, Hannoia, AK",
-            price = 150.00,
-            coverUrl = "${AppConfig.hostUrl}/assets/001/001.webp",
-            imagesUrl = listOf(
-                "${AppConfig.hostUrl}/assets/001/001.webp",
-                "${AppConfig.hostUrl}/assets/001/002.webp",
-                "${AppConfig.hostUrl}/assets/001/003.webp",
-                "${AppConfig.hostUrl}/assets/001/004.webp",
-            )
+        id = 1,
+        name = "Place name",
+        description = "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more",
+        address = "San Petter, Hannoia, AK",
+        price = 150.00,
+        coverUrl = "${AppConfig.hostUrl}/assets/001/001.webp",
+        imagesUrl = listOf(
+            "${AppConfig.hostUrl}/assets/001/001.webp",
+            "${AppConfig.hostUrl}/assets/001/002.webp",
+            "${AppConfig.hostUrl}/assets/001/003.webp",
+            "${AppConfig.hostUrl}/assets/001/004.webp",
         )
+    )
     AirbnbTheme {
         PlaceCard(place = place)
     }
@@ -113,6 +114,7 @@ fun PlaceCardLightPreview() {
 fun PlaceCardNightPreview() {
     val place = Place(
         id = 1,
+        name = "Place name",
         description = "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more",
         address = "San Petter, Hannoia, AK",
         price = 150.00,

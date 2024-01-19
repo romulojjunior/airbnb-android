@@ -6,9 +6,12 @@ import com.demo.airbnb.domain.entities.Place
 val PlacesSamples = listOf(
     Place(
         id = 1,
+        name = "Dummy text ever since the 1500s",
         description = "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more",
         address = "San Petter, Hannoia, AK",
         price = 150.00,
+        starts = 4.5,
+        reviews = 135,
         coverUrl = "${AppConfig.hostUrl}/assets/001/001.webp",
         imagesUrl = listOf(
             "${AppConfig.hostUrl}/assets/001/001.webp",
@@ -19,9 +22,12 @@ val PlacesSamples = listOf(
     ),
     Place(
         id = 2,
+        name = "Dummy text ever since the 1500s",
         description = "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more",
         address = "Anaky Chua, Hannoia, AK",
         price = 160.00,
+        starts = 3.5,
+        reviews = 235,
         coverUrl = "${AppConfig.hostUrl}/assets/002/001.webp",
         imagesUrl = listOf(
             "${AppConfig.hostUrl}/assets/002/001.webp",
@@ -32,9 +38,12 @@ val PlacesSamples = listOf(
     ),
     Place(
         id = 3,
+        name = "Dummy text ever since the 1500s",
         description = "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more",
         address = "Grovy Annesh, Hannoia, AK",
         price = 170.00,
+        starts = 4.0,
+        reviews = 320,
         coverUrl = "${AppConfig.hostUrl}/assets/003/001.webp",
         imagesUrl = listOf(
             "${AppConfig.hostUrl}/assets/003/001.webp",
@@ -45,9 +54,12 @@ val PlacesSamples = listOf(
     ),
     Place(
         id = 4,
+        name = "Dummy text ever since the 1500s",
         description = "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more",
         address = "Ashe Muya, Hannoia, AK",
         price = 180.00,
+        starts = 5.0,
+        reviews = 120,
         coverUrl = "${AppConfig.hostUrl}/assets/004/001.webp",
         imagesUrl = listOf(
             "${AppConfig.hostUrl}/assets/004/001.webp",
@@ -58,9 +70,12 @@ val PlacesSamples = listOf(
     ),
     Place(
         id = 5,
+        name = "Dummy text ever since the 1500s",
         description = "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more",
         address = "Ashe Muya, Hannoia, AK",
         price = 180.00,
+        starts = 4.5,
+        reviews = 105,
         coverUrl = "${AppConfig.hostUrl}/assets/004/001.webp",
         imagesUrl = listOf(
             "${AppConfig.hostUrl}/assets/004/001.webp",
@@ -71,9 +86,12 @@ val PlacesSamples = listOf(
     ),
     Place(
         id = 6,
+        name = "Dummy text ever since the 1500s",
         description = "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more",
         address = "Grovy Annesh, Hannoia, AK",
         price = 170.00,
+        starts = 2.5,
+        reviews = 10,
         coverUrl = "${AppConfig.hostUrl}/assets/003/001.webp",
         imagesUrl = listOf(
             "${AppConfig.hostUrl}/assets/003/001.webp",
@@ -83,10 +101,13 @@ val PlacesSamples = listOf(
         )
     ),
     Place(
+        name = "Dummy text ever since the 1500s",
         id = 7,
         description = "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more",
         address = "Anaky Chua, Hannoia, AK",
         price = 160.00,
+        starts = 4.5,
+        reviews = 135,
         coverUrl = "${AppConfig.hostUrl}/assets/002/001.webp",
         imagesUrl = listOf(
             "${AppConfig.hostUrl}/assets/002/001.webp",

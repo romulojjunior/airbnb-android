@@ -26,4 +26,7 @@
     <string name="nav_messages">Messages</string>
     <string name="nav_profile">Profile</string>
     <string name="explorescreen_title">Explore</string>
+    <string name="error_generic_title">Sorry</string>
+    <string name="error_generic_description">Something wont wrong!</string>
+    <string name="place_details_stats_and_reviews">%1$s . %2$s reviews</string>
 </resources>
