@@ -1,32 +1,32 @@
-package com.demo.airbnb.ui.features.login
+package com.demo.airbnb.ui.features.placedetails
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.demo.airbnb.domain.entities.Session
-import com.demo.airbnb.domain.usecases.account.SignInUC
+import com.demo.airbnb.domain.entities.Place
+import com.demo.airbnb.domain.usecases.places.GetPlacesByIdUC
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginVM @Inject constructor(private val signInUC: SignInUC) : ViewModel() {
+class PlaceDetailsVM @Inject constructor(private val getPlacesByIdUC: GetPlacesByIdUC) : ViewModel() {
     data class UIState(
-        val session: Session? = null,
         val exception: Exception? = null,
-        val isLoading: Boolean = false
+        val isLoading: Boolean = false,
+        val place: Place? = null
     )
 
     private val _uiState = mutableStateOf(UIState())
     val uiState = _uiState
 
-    fun signIn(email: String, password: String) {
+    fun loadPlace(id: Int) {
         _uiState.value = _uiState.value.copy(isLoading = true, exception = null)
         try {
             viewModelScope.launch(Dispatchers.IO) {
-                val session = signInUC.execute(email, password)
-                _uiState.value = _uiState.value.copy(session = session, isLoading = false)
+                val place = getPlacesByIdUC.execute(id)
+                _uiState.value = _uiState.value.copy(place = place, isLoading = false)
             }
         } catch (e: Exception) {
             e.printStackTrace()

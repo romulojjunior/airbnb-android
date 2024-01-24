@@ -11,10 +11,14 @@
     <string name="login_continue_with_email">Continue with Email</string>
     <string name="login_continue_with_google">Continue with Google</string>
 
-    <!--  Global  -->
-    <string name="sign_in">Sign In</string>
-    <string name="sign_up">Sign Up</string>
-    <string name="or">or</string>
+    <!--  Place details screen  -->
+    <string name="place_details_stats_and_reviews">%1$s . %2$s reviews</string>
+    <string name="place_details_dedicated_workspace">Dedicated workspace</string>
+    <string name="place_details_dedicated_workspace_description">A common are with wifi that\'s well-suited for working</string>
+    <string name="place_details_extra_bed">Extra bed</string>
+    <string name="place_details_extra_bed_description">There is a extra bed if needed</string>
+    <string name="place_details_free_cancellation">Free cancellation before July 15th</string>
+    <string name="place_details_free_cancellation_description">Feel free to cancel</string>
 
     <!--  Samples for Preview and Test  -->
     <string name="ui_sample">UI sample text</string>
@@ -26,4 +30,14 @@
     <string name="nav_messages">Messages</string>
     <string name="nav_profile">Profile</string>
     <string name="explorescreen_title">Explore</string>
+    <string name="error_generic_title">Sorry</string>
+    <string name="error_generic_description">Something wont wrong!</string>
+
+    <!--  Global  -->
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="or">or</string>
+    <string name="guest">Guest</string>
+    <string name="favorite">Favorite</string>
+
 </resources>
