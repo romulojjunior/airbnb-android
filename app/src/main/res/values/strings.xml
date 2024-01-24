@@ -37,5 +37,7 @@
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
     <string name="or">or</string>
+    <string name="guest">Guest</string>
+    <string name="favorite">Favorite</string>
 
 </resources>

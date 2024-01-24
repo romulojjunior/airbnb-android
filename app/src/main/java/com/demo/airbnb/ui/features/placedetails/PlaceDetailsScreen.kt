@@ -42,6 +42,7 @@ import com.demo.airbnb.domain.utils.NumberFormatUtils
 import com.demo.airbnb.ui.components.UIError
 import com.demo.airbnb.ui.components.UILoading
 import com.demo.airbnb.ui.components.UIItemTale
+import com.demo.airbnb.ui.features.placedetails.components.PlaceDetailsScoreReview
 import com.demo.airbnb.ui.theme.AirbnbTheme
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -151,7 +152,15 @@ fun PlaceDetailsScreen(
                 }
 
                 item {
-                    Divider(Modifier.padding(16.dp))
+                    Surface(modifier = Modifier.padding(16.dp)) {
+                        PlaceDetailsScoreReview(
+                            rate = place.starts,
+                            reviews = place.reviews
+                        )
+                    }
+                }
+
+                item {
                     UIItemTale(title = stringResource(R.string.place_details_dedicated_workspace), description = stringResource(
                         R.string.place_details_dedicated_workspace_description
                     ), iconContent = {
@@ -171,16 +180,6 @@ fun PlaceDetailsScreen(
                     })
 
                     Divider(Modifier.padding(16.dp))
-                }
-
-
-                item {
-                    Box(modifier = Modifier
-                        .padding(bottom = 32.dp)
-                        .height(200.dp)
-                        .background(Color.Red)) {
-
-                    }
                 }
             }
         }
