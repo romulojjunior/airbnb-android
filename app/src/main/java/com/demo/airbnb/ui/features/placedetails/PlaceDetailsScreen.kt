@@ -3,8 +3,6 @@ package com.demo.airbnb.ui.features.placedetails
 import android.content.res.Configuration
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.scrollable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,6 +15,7 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -30,7 +29,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.VerticalAlignmentLine
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -41,10 +39,9 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.demo.airbnb.R
 import com.demo.airbnb.domain.utils.NumberFormatUtils
-import com.demo.airbnb.ui.components.PlaceCard
 import com.demo.airbnb.ui.components.UIError
-import com.demo.airbnb.ui.components.UIHeader
 import com.demo.airbnb.ui.components.UILoading
+import com.demo.airbnb.ui.components.UIItemTale
 import com.demo.airbnb.ui.theme.AirbnbTheme
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -85,26 +82,26 @@ fun PlaceDetailsScreen(
                 item {
                     HorizontalPager(state = pagerState) { index ->
                         val url = place.imagesUrl[index]
-                            Box(modifier = Modifier
-                                .fillMaxWidth()
-                                .height(300.dp)) {
-                                AsyncImage(
-                                    model = url,
-                                    contentDescription = "Place image",
-                                    contentScale = ContentScale.Crop,
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .align(Alignment.Center),
-                                    placeholder = painterResource(id = R.drawable.connection_error),
-                                    error = painterResource(id = R.drawable.connection_error)
-                                )
-                                val locale = LocalContext.current.resources.configuration.locales[0]
-                                Text(text = NumberFormatUtils.formatCurrency(locale, place.price), color = Color.White, fontWeight = FontWeight.ExtraBold, modifier = Modifier
-                                    .padding(8.dp)
-                                    .align(
-                                        Alignment.BottomEnd
-                                    ))
-                            }
+                        Box(modifier = Modifier
+                            .fillMaxWidth()
+                            .height(300.dp)) {
+                            AsyncImage(
+                                model = url,
+                                contentDescription = "Place image",
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .align(Alignment.Center),
+                                placeholder = painterResource(id = R.drawable.connection_error),
+                                error = painterResource(id = R.drawable.connection_error)
+                            )
+                            val locale = LocalContext.current.resources.configuration.locales[0]
+                            Text(text = NumberFormatUtils.formatCurrency(locale, place.price), color = Color.White, fontWeight = FontWeight.ExtraBold, modifier = Modifier
+                                .padding(8.dp)
+                                .align(
+                                    Alignment.BottomEnd
+                                ))
+                        }
 
                     }
                 }
@@ -153,11 +150,34 @@ fun PlaceDetailsScreen(
                     }
                 }
 
+                item {
+                    Divider(Modifier.padding(16.dp))
+                    UIItemTale(title = stringResource(R.string.place_details_dedicated_workspace), description = stringResource(
+                        R.string.place_details_dedicated_workspace_description
+                    ), iconContent = {
+                        Icon(painter = painterResource(id = R.drawable.ic_table_restaurant_24), contentDescription = "Workspace available")
+                    })
+
+                    UIItemTale(title = stringResource(R.string.place_details_extra_bed), description = stringResource(
+                        R.string.place_details_extra_bed_description
+                    ), iconContent = {
+                        Icon(painter = painterResource(id = R.drawable.ic_bed), contentDescription = "Extra bed available")
+                    })
+
+                    UIItemTale(title = stringResource(R.string.place_details_free_cancellation), description = stringResource(
+                        R.string.place_details_free_cancellation_description
+                    ), iconContent = {
+                        Icon(painter = painterResource(id = R.drawable.ic_calendar_24), contentDescription = "Calendar cancellation")
+                    })
+
+                    Divider(Modifier.padding(16.dp))
+                }
+
 
                 item {
                     Box(modifier = Modifier
                         .padding(bottom = 32.dp)
-                        .height(900.dp)
+                        .height(200.dp)
                         .background(Color.Red)) {
 
                     }
