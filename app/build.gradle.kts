@@ -16,7 +16,9 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        // testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.demo.airbnb.CustomTestRunner"
+
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -74,9 +76,11 @@ dependencies {
     // Image Download
     implementation("io.coil-kt:coil-compose:2.5.0")
 
-    // DI - Hilt
+    // DI - Hilt https://developer.android.com/training/dependency-injection/hilt-testing
     implementation("com.google.dagger:hilt-android:2.49")
     kapt("com.google.dagger:hilt-compiler:2.49")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.48")
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.48")
 
     testImplementation("junit:junit:4.13.2")
     testImplementation("androidx.test.ext:junit:1.1.5")

@@ -4,7 +4,8 @@ import com.demo.airbnb.domain.entities.Session
 import com.demo.airbnb.domain.entities.User
 import javax.inject.Inject
 
-class SignInUC @Inject constructor() {
+class SignInUC @Inject constructor() : ISignInUC {
+    override
     suspend fun execute(email: String, password: String): Session {
         Thread.sleep(1000L)
         val name = email.split("@").first()

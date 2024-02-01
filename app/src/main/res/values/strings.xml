@@ -10,6 +10,8 @@
     <string name="login_sms_confirmation">We\'ll call or text you to confirm your number. Standard message and data apply.</string>
     <string name="login_continue_with_email">Continue with Email</string>
     <string name="login_continue_with_google">Continue with Google</string>
+    <string name="login_sign_in_success">Sign-in success!</string>
+    <string name="login_sign_in_error">Sign-in success!</string>
 
     <!--  Place details screen  -->
     <string name="place_details_stats_and_reviews">%1$s . %2$s reviews</string>
