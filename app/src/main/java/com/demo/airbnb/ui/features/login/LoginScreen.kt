@@ -121,6 +121,14 @@ fun LoginScreen(
             ) {
                 Text(text = stringResource(R.string.sign_up))
             }
+            if (uiState.value.session != null) {
+                Text(text = stringResource(R.string.login_sign_in_success))
+            }
+
+            if (uiState.value.exception != null) {
+                Text(text = stringResource(R.string.login_sign_in_error))
+            }
+
             Row(horizontalArrangement = Arrangement.Center, modifier = Modifier.fillMaxWidth()) {
                 Text(text = stringResource(R.string.or))
             }

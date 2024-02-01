@@ -4,14 +4,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.demo.airbnb.domain.entities.Session
-import com.demo.airbnb.domain.usecases.account.SignInUC
+import com.demo.airbnb.domain.usecases.account.ISignInUC
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginVM @Inject constructor(private val signInUC: SignInUC) : ViewModel() {
+class LoginVM @Inject constructor(private val signInUC: ISignInUC) : ViewModel() {
     data class UIState(
         val session: Session? = null,
         val exception: Exception? = null,
