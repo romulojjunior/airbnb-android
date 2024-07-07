@@ -4,7 +4,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.demo.airbnb.domain.entities.PlaceCategory
-import com.demo.airbnb.domain.usecases.places.GetPlacesCategoriesUC
+import com.demo.airbnb.domain.usecases.places.IGetPlacesCategoriesUC
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeVM @Inject constructor(
-    private val getPlacesCategoriesUC: GetPlacesCategoriesUC
+    private val getPlacesCategoriesUC: IGetPlacesCategoriesUC
 ) : ViewModel() {
     data class UIState(
         val exception: Exception? = null,

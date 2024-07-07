@@ -1,16 +1,12 @@
-package com.demo.airbnb.domain.usecases.places
+package com.demo.airbnb.di.mocks.domain.usecases.places
 
 import com.demo.airbnb.data.samples.PlacesSamples
 import com.demo.airbnb.domain.entities.PlaceCategory
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.demo.airbnb.domain.usecases.places.IGetPlacesCategoriesUC
 import javax.inject.Inject
 
-class GetPlacesCategoriesUC @Inject constructor() : IGetPlacesCategoriesUC{
+class GetPlacesCategoriesUCMocked @Inject constructor() : IGetPlacesCategoriesUC {
     override suspend fun execute(): List<PlaceCategory> {
-        withContext(Dispatchers.IO) {
-            Thread.sleep(1000L)
-        }
         return listOf(
             PlaceCategory(
                 id = 1,
