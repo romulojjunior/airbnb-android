@@ -1,13 +1,15 @@
 package com.demo.airbnb.di
 
-import com.demo.airbnb.domain.entities.Session
-import com.demo.airbnb.domain.entities.User
+import com.demo.airbnb.di.mocks.domain.usecases.places.GetPlacesCategoriesUCMocked
+import com.demo.airbnb.di.mocks.domain.usecases.account.SignInUCMocked
+import com.demo.airbnb.di.mocks.domain.usecases.places.GetPlacesByIdUCMocked
 import com.demo.airbnb.domain.usecases.account.ISignInUC
+import com.demo.airbnb.domain.usecases.places.IGetPlacesByIdUC
+import com.demo.airbnb.domain.usecases.places.IGetPlacesCategoriesUC
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
-import javax.inject.Inject
 import javax.inject.Singleton
 
 @Module
@@ -19,10 +21,11 @@ interface UseCaseModuleTest {
     @Singleton
     @Binds
     fun bindSignInUC(signInUC: SignInUCMocked): ISignInUC
+
+    @Binds
+    fun bindIGetPlacesByIdUC(getPlacesByIdUC: GetPlacesByIdUCMocked): IGetPlacesByIdUC
+
+    @Binds
+    fun bindIGetPlacesCategoriesUC(getPlacesCategoriesUC: GetPlacesCategoriesUCMocked): IGetPlacesCategoriesUC
 }
 
-class SignInUCMocked @Inject constructor() : ISignInUC {
-    override suspend fun execute(email: String, password: String): Session {
-        return Session(id = "0001", user = User(name = "userTest", email = "userTest@test.com"))
-    }
-}
