@@ -1,6 +1,5 @@
 package com.demo.airbnb.ui.features.login
 
-import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
@@ -11,6 +10,7 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
+import com.demo.airbnb.MainTestActivity
 import com.demo.airbnb.R
 import com.demo.airbnb.domain.usecases.account.ISignInUC
 import com.demo.airbnb.ui.theme.AirbnbTheme
@@ -24,7 +24,7 @@ import javax.inject.Inject
 @HiltAndroidTest
 class LoginScreenTest {
     @get:Rule
-    val composeTestRule = createAndroidComposeRule<ComponentActivity>()
+    val composeTestRule = createAndroidComposeRule<MainTestActivity>()
 
     @get:Rule
     var hiltRule = HiltAndroidRule(this)
