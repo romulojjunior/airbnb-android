@@ -1,14 +1,19 @@
 package com.demo.airbnb.ui.features.placedetails
 
+import android.annotation.SuppressLint
 import android.content.res.Configuration
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -17,6 +22,7 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -43,8 +49,9 @@ import com.demo.airbnb.ui.components.UILoading
 import com.demo.airbnb.ui.components.UIItemTale
 import com.demo.airbnb.ui.features.placedetails.components.PlaceDetailsScoreReview
 import com.demo.airbnb.ui.theme.AirbnbTheme
+import androidx.compose.ui.platform.LocalConfiguration
 
-@OptIn(ExperimentalFoundationApi::class)
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun PlaceDetailsScreen(
     uiState: MutableState<PlaceDetailsVM.UIState> = mutableStateOf(PlaceDetailsVM.UIState()),
@@ -72,11 +79,9 @@ fun PlaceDetailsScreen(
         return
     }
 
-    Surface(
-        color = MaterialTheme.colorScheme.background,
-        modifier = Modifier.fillMaxSize()
-    ) {
-        LazyColumn {
+    Scaffold {
+        LazyColumn(
+            modifier = Modifier.safeDrawingPadding()) {
             uiState.value.place?.let { place ->
 
                 item {
@@ -95,7 +100,7 @@ fun PlaceDetailsScreen(
                                 placeholder = painterResource(id = R.drawable.connection_error),
                                 error = painterResource(id = R.drawable.connection_error)
                             )
-                            val locale = LocalContext.current.resources.configuration.locales[0]
+                            val locale = LocalConfiguration.current.locales[0]
                             Text(text = NumberFormatUtils.formatCurrency(locale, place.price), color = Color.White, fontWeight = FontWeight.ExtraBold, modifier = Modifier
                                 .padding(8.dp)
                                 .align(
