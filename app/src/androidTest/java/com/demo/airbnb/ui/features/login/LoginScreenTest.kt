@@ -53,7 +53,7 @@ class LoginScreenTest {
         composeTestRule.setContent {
             AirbnbTheme {
                 LoginScreen(
-                    uiState = loginVM.uiState,
+                    uiState = loginVM.state,
                     signIn = {name, email -> loginVM.signIn(name, email) },
                 )
             }

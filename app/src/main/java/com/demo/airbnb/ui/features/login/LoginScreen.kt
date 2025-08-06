@@ -18,13 +18,17 @@ import com.demo.airbnb.R
 import com.demo.airbnb.ui.components.UILoading
 import com.demo.airbnb.ui.components.UIOutlinedButton
 import com.demo.airbnb.ui.theme.AirbnbTheme
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 @Composable
 fun LoginScreen(
-    uiState: MutableState<LoginVM.UIState> = mutableStateOf(LoginVM.UIState()),
+    uiState: StateFlow<LoginVM.UIState> = MutableStateFlow(LoginVM.UIState()),
     navigateToHome: () -> Unit = {},
     signIn: (email: String, password: String) -> Unit = { _, _ -> },
 ) {
+    val state = uiState.collectAsState()
+
     var country by rememberSaveable {
         mutableStateOf("")
     }
@@ -45,13 +49,13 @@ fun LoginScreen(
         isSignUpEnable = country.isNotBlank() && phoneNumber.contains("\\d{8}".toRegex())
     })
 
-    LaunchedEffect(key1 = uiState.value.session, block = {
+    LaunchedEffect(key1 = state.value.session, block = {
         if (uiState.value.session != null) {
             navigateToHome()
         }
     })
 
-    if (uiState.value.isLoading) {
+    if (state.value.isLoading) {
         UILoading()
         return
     }
@@ -102,11 +106,11 @@ fun LoginScreen(
             ) {
                 Text(text = stringResource(R.string.sign_up))
             }
-            if (uiState.value.session != null) {
+            if (state.value.session != null) {
                 Text(text = stringResource(R.string.login_sign_in_success))
             }
 
-            if (uiState.value.exception != null) {
+            if (state.value.exception != null) {
                 Text(text = stringResource(R.string.login_sign_in_error))
             }
 

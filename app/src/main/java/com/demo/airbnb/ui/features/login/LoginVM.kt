@@ -7,6 +7,11 @@ import com.demo.airbnb.domain.entities.Session
 import com.demo.airbnb.domain.usecases.account.ISignInUC
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,19 +23,32 @@ class LoginVM @Inject constructor(private val signInUC: ISignInUC) : ViewModel()
         val isLoading: Boolean = false
     )
 
-    private val _uiState = mutableStateOf(UIState())
-    val uiState = _uiState
+    private val _state: MutableStateFlow<UIState> = MutableStateFlow(UIState())
+    val state: StateFlow<UIState> = _state.asStateFlow()
 
     fun signIn(email: String, password: String) {
-        _uiState.value = _uiState.value.copy(isLoading = true, exception = null)
+        _state.update {
+            it.copy(isLoading = true, exception = null)
+        }
+
         try {
             viewModelScope.launch(Dispatchers.IO) {
                 val session = signInUC.execute(email, password)
-                _uiState.value = _uiState.value.copy(session = session, isLoading = false)
+                _state.update {
+                    it.copy(
+                        session = session,
+                        isLoading = false
+                    )
+                }
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            _uiState.value = _uiState.value.copy(exception = e, isLoading = false)
+            _state.update {
+                it.copy(
+                    exception = e,
+                    isLoading = false
+                )
+            }
         }
     }
 }

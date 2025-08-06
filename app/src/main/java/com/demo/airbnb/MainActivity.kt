@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
                     val loginVM: LoginVM by viewModels()
                     AirbnbTheme {
                         LoginScreen(
-                            uiState = loginVM.uiState,
+                            uiState = loginVM.state,
                             signIn = loginVM::signIn,
                             navigateToHome = {
                                 navController.navigate(AppRouter.homePath()) {
