@@ -14,7 +14,6 @@ import com.demo.airbnb.ui.AppRouter
 import com.demo.airbnb.ui.features.home.HomeScreen
 import com.demo.airbnb.ui.features.home.HomeVM
 import com.demo.airbnb.ui.features.login.LoginScreen
-import com.demo.airbnb.ui.features.login.LoginVM
 import com.demo.airbnb.ui.features.placedetails.PlaceDetailsScreen
 import com.demo.airbnb.ui.features.placedetails.PlaceDetailsVM
 import com.demo.airbnb.ui.theme.AirbnbTheme
@@ -32,16 +31,9 @@ class MainActivity : ComponentActivity() {
                 startDestination = AppRouter.loginPath
             ) {
                 composable(AppRouter.loginPath) {
-                    val loginVM: LoginVM by viewModels()
                     AirbnbTheme {
                         LoginScreen(
-                            uiState = loginVM.state,
-                            signIn = loginVM::signIn,
-                            navigateToHome = {
-                                navController.navigate(AppRouter.homePath()) {
-                                    popUpTo(AppRouter.loginPath()) { inclusive = true }
-                                }
-                            },
+                            navController = navController
                         )
                     }
                 }

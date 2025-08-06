@@ -14,21 +14,36 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import com.demo.airbnb.R
+import com.demo.airbnb.ui.AppRouter
 import com.demo.airbnb.ui.components.UILoading
 import com.demo.airbnb.ui.components.UIOutlinedButton
 import com.demo.airbnb.ui.theme.AirbnbTheme
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 
 @Composable
 fun LoginScreen(
-    uiState: StateFlow<LoginVM.UIState> = MutableStateFlow(LoginVM.UIState()),
+    viewModel: LoginVM = hiltViewModel(),
+    navController: NavHostController
+) {
+    val state by viewModel.state.collectAsState()
+    LoginScreenContent(
+        uiState = state,
+        signIn = viewModel::signIn,
+        navigateToHome = {
+            navController.navigate(AppRouter.homePath()) {
+                popUpTo(AppRouter.loginPath()) { inclusive = true }
+            }
+        }
+    )
+}
+@Composable
+fun LoginScreenContent(
+    uiState: LoginVM.UIState = LoginVM.UIState(),
     navigateToHome: () -> Unit = {},
     signIn: (email: String, password: String) -> Unit = { _, _ -> },
 ) {
-    val state = uiState.collectAsState()
-
     var country by rememberSaveable {
         mutableStateOf("")
     }
@@ -49,13 +64,13 @@ fun LoginScreen(
         isSignUpEnable = country.isNotBlank() && phoneNumber.contains("\\d{8}".toRegex())
     })
 
-    LaunchedEffect(key1 = state.value.session, block = {
-        if (uiState.value.session != null) {
+    LaunchedEffect(key1 = uiState.session, block = {
+        if (uiState.session != null) {
             navigateToHome()
         }
     })
 
-    if (state.value.isLoading) {
+    if (uiState.isLoading) {
         UILoading()
         return
     }
@@ -106,11 +121,11 @@ fun LoginScreen(
             ) {
                 Text(text = stringResource(R.string.sign_up))
             }
-            if (state.value.session != null) {
+            if (uiState.session != null) {
                 Text(text = stringResource(R.string.login_sign_in_success))
             }
 
-            if (state.value.exception != null) {
+            if (uiState.exception != null) {
                 Text(text = stringResource(R.string.login_sign_in_error))
             }
 
@@ -141,7 +156,7 @@ fun LoginScreen(
 )
 fun LoginScreenPreview() {
     AirbnbTheme {
-        LoginScreen()
+        LoginScreenContent()
     }
 }
 
@@ -152,6 +167,6 @@ fun LoginScreenPreview() {
 )
 fun LoginScreenNightPreview() {
     AirbnbTheme {
-        LoginScreen()
+        LoginScreenContent()
     }
 }

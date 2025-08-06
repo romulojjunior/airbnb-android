@@ -78,6 +78,7 @@ dependencies {
 
     // DI - Hilt https://developer.android.com/training/dependency-injection/hilt-testing
     implementation("com.google.dagger:hilt-android:2.56.2")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     androidTestImplementation("com.google.dagger:hilt-android-testing:2.56.2")
     ksp("com.google.dagger:hilt-compiler:2.56.2")
 

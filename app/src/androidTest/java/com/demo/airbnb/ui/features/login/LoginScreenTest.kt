@@ -1,5 +1,6 @@
 package com.demo.airbnb.ui.features.login
 
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
@@ -49,12 +50,12 @@ class LoginScreenTest {
     @Test
     fun loginScreenShouldDisplaySuccessMessageAfterSignIn() {
         val loginVM = LoginVM(signInUC=signInUC)
-
         composeTestRule.setContent {
+            val uiState = loginVM.state.collectAsState().value
             AirbnbTheme {
-                LoginScreen(
-                    uiState = loginVM.state,
-                    signIn = {name, email -> loginVM.signIn(name, email) },
+                LoginScreenContent(
+                    uiState = uiState,
+                    signIn = { name, email -> loginVM.signIn(name, email) },
                 )
             }
         }
@@ -83,7 +84,7 @@ class LoginScreenTest {
     fun loginScreenLabelsShouldBeVisible() {
         composeTestRule.setContent {
             AirbnbTheme {
-                LoginScreen()
+                LoginScreenContent()
             }
         }
 
@@ -104,7 +105,7 @@ class LoginScreenTest {
     fun loginScreenSignUpButtonIsDisabledWhenScreenIsLoaded() {
         composeTestRule.setContent {
             AirbnbTheme {
-                LoginScreen()
+                LoginScreenContent()
             }
         }
 
@@ -117,7 +118,7 @@ class LoginScreenTest {
     fun loginScreenSignUpButtonShouldBeEnabledWhenCountryAndPhoneIsFilled() {
         composeTestRule.setContent {
             AirbnbTheme {
-                LoginScreen()
+                LoginScreenContent()
             }
         }
 
