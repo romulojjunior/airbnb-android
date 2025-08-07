@@ -15,7 +15,6 @@ import com.demo.airbnb.ui.features.home.HomeScreen
 import com.demo.airbnb.ui.features.home.HomeVM
 import com.demo.airbnb.ui.features.login.LoginScreen
 import com.demo.airbnb.ui.features.placedetails.PlaceDetailsScreen
-import com.demo.airbnb.ui.features.placedetails.PlaceDetailsVM
 import com.demo.airbnb.ui.theme.AirbnbTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,21 +41,19 @@ class MainActivity : ComponentActivity() {
                     AirbnbTheme {
                         HomeScreen(
                             uiState = homeVM.uiState,
-                            navigateToPlaceDetails = { navController.navigate(AppRouter.placeDetailsPath(it.id))}
+                            navigateToPlaceDetails = { navController.navigate(AppRouter.placeDetailsPath(it.id)) }
                         )
                     }
                 }
-                composable(AppRouter.placeDetailsPath, arguments = listOf(
+                composable(
+                    AppRouter.placeDetailsPath, arguments = listOf(
                     navArgument("id") { type = NavType.IntType; defaultValue = 0 }
                 )) {
-                    val placeDetailsVM: PlaceDetailsVM by viewModels()
                     val placeId = it.arguments?.getInt("id") ?: 0
-
                     AirbnbTheme {
                         PlaceDetailsScreen(
-                            uiState = placeDetailsVM.uiState,
                             placeId = placeId,
-                            fetchPlace = placeDetailsVM::loadPlace
+                            navController = navController
                         )
                     }
                 }
