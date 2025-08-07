@@ -1,6 +1,6 @@
 package com.demo.airbnb.domain.usecases.places
 
-import com.demo.airbnb.data.samples.PlacesSamples
+import com.demo.airbnb.data.samples.PlaceCategorySample
 import com.demo.airbnb.domain.entities.PlaceCategory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -11,22 +11,6 @@ class GetPlacesCategoriesUC @Inject constructor() : IGetPlacesCategoriesUC{
         withContext(Dispatchers.IO) {
             Thread.sleep(1000L)
         }
-        return listOf(
-            PlaceCategory(
-                id = 1,
-                priority = 0,
-                name = "Home",
-                places = PlacesSamples.subList(0, 4)
-            ),
-            PlaceCategory(id = 2, priority = 1, name = "Apartment",
-                places = PlacesSamples.subList(4, 5)
-            ),
-            PlaceCategory(id = 3, priority = 2, name = "Bed",
-                places = PlacesSamples.subList(5, 6)
-            ),
-            PlaceCategory(id = 4, priority = 3, name = "Other",
-                places = PlacesSamples.subList(6, 7)
-            ),
-        )
+        return PlaceCategorySample
     }
 }
