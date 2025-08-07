@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.demo.airbnb.domain.entities.PlaceCategory
 import com.demo.airbnb.domain.usecases.places.IGetPlacesCategoriesUC
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -34,7 +33,7 @@ class HomeVM @Inject constructor(
             it.copy(isLoading = true, exception = null)
         }
 
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             val placeCategories = getPlacesCategoriesUC.execute()
             _uiState.update {
                 it.copy(

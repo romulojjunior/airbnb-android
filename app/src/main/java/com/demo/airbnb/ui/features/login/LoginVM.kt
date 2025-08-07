@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.demo.airbnb.domain.entities.Session
 import com.demo.airbnb.domain.usecases.account.ISignInUC
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -30,7 +29,7 @@ class LoginVM @Inject constructor(private val signInUC: ISignInUC) : ViewModel()
         }
 
         try {
-            viewModelScope.launch(Dispatchers.IO) {
+            viewModelScope.launch {
                 val session = signInUC.execute(email, password)
                 _state.update {
                     it.copy(

@@ -1,15 +1,18 @@
 package com.demo.airbnb.domain.usecases.account
 
+import com.demo.airbnb.di.DispatcherIO
 import com.demo.airbnb.domain.entities.Session
 import com.demo.airbnb.domain.entities.User
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
-class SignInUC @Inject constructor() : ISignInUC {
+class SignInUC @Inject constructor(
+    @DispatcherIO val coroutineContext: CoroutineContext
+) : ISignInUC {
     override
     suspend fun execute(email: String, password: String): Session {
-        withContext(Dispatchers.IO) {
+        withContext(coroutineContext) {
             Thread.sleep(1000L)
         }
         val name = email.split("@").first()

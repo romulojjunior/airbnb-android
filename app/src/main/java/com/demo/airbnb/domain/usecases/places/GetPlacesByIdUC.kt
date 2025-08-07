@@ -1,14 +1,17 @@
 package com.demo.airbnb.domain.usecases.places
 
 import com.demo.airbnb.data.samples.PlacesSamples
+import com.demo.airbnb.di.DispatcherIO
 import com.demo.airbnb.domain.entities.Place
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
-class GetPlacesByIdUC @Inject constructor() : IGetPlacesByIdUC  {
+class GetPlacesByIdUC @Inject constructor(
+    @DispatcherIO val coroutineContext: CoroutineContext
+) : IGetPlacesByIdUC  {
      override suspend fun execute(id: Int): Place {
-         withContext(Dispatchers.IO) {
+         withContext(coroutineContext) {
              Thread.sleep(1000L)
          }
         try {
